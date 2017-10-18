@@ -107,6 +107,9 @@ def game_intro():
 
             if events.type == pygame.QUIT:
                 quit_game()
+            if events.type == pygame.KEYDOWN :
+                if events.key == pygame.K_ESCAPE:
+                    quit_game()
 
         playSurface.fill(white)
         pygame.draw.rect(playSurface, red, [200, 600, 30, 70])
@@ -143,8 +146,7 @@ def game_loop():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                quit_game()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT or event.key == ord('d'):
                     changeto = 'RIGHT'
@@ -155,7 +157,7 @@ def game_loop():
                 if event.key == pygame.K_DOWN or event.key == ord('d'):
                     changeto = 'DOWN'
                 if event.key == pygame.K_ESCAPE :
-                    pygame.event.post(pygame.event.Event(pygame.QUIT))
+                    quit_game()
         #validate the direction
         if changeto =='RIGHT' and not direction =='LEFT':
             direction ='RIGHT'
